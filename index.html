@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pro Website</title>
+<title>My Modern Website</title>
 
 <style>
 * {
@@ -23,13 +23,17 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 20px 40px;
-    background: #020617;
+    background: rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 nav a {
     color: white;
     margin-left: 20px;
     text-decoration: none;
+    font-weight: bold;
     transition: 0.3s;
 }
 
@@ -46,11 +50,13 @@ nav a:hover {
 
 .hero h1 {
     font-size: 3em;
+    animation: fadeInDown 1s ease forwards;
 }
 
 .hero p {
     margin: 20px 0;
     font-size: 18px;
+    animation: fadeInUp 1s ease forwards;
 }
 
 .btn {
@@ -82,6 +88,7 @@ nav a:hover {
     width: 250px;
     margin: 15px;
     transition: 0.3s;
+    text-align: center;
 }
 
 .card:hover {
@@ -94,11 +101,39 @@ nav a:hover {
     padding: 80px 20px;
 }
 
+/* WhatsApp Button */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.whatsapp:hover {
+    transform: scale(1.1);
+}
+
 /* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
-    background: #020617;
+    background: rgba(0,0,0,0.3);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -117,8 +152,8 @@ footer {
 <!-- HERO -->
 <section class="hero">
     <h1>Build Your Dream Business Online</h1>
-    <p>Create a powerful website and start making money</p>
-    <button class="btn" onclick="goToShopify()">Get Started</button>
+    <p>Create a powerful website and start making money today</p>
+    <button class="btn" onclick="goToShop()">Get Started</button>
 </section>
 
 <!-- FEATURES -->
@@ -135,24 +170,28 @@ footer {
 
     <div class="card">
         <h3>Easy</h3>
-        <p>No stress, simple to use</p>
+        <p>Simple to use, no coding required</p>
     </div>
 </section>
 
 <!-- CALL TO ACTION -->
 <section class="cta">
     <h2>Start Your Online Store Today</h2>
-    <br>
-    <button class="btn" onclick="goToShopify()">Launch Now</button>
+    <button class="btn" onclick="goToShop()">Launch Now</button>
 </section>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+</a>
 
 <footer>
     <p>© 2026 MyBrand. All rights reserved.</p>
 </footer>
 
 <script>
-function goToShopify() {
-    window.location.href = "https://www.shopify.com";
+function goToShop() {
+    window.location.href = "https://selar.co"; // This is your “Get Started” link
 }
 </script>
 
