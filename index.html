@@ -6,63 +6,79 @@
 <title>Dazzel Store</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     margin: 0;
-    background: #f5f5f5;
+    background: #f4f6f8;
+    color: #333;
   }
   header {
-    background: #4CAF50;
+    background: linear-gradient(90deg, #4CAF50, #43A047);
     color: white;
-    padding: 15px;
+    padding: 20px 10px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
   nav a {
-    margin: 0 10px;
+    margin: 0 15px;
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #ffeb3b;
   }
   .products {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px;
+    margin: 30px 10px;
   }
   .product {
     background: white;
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 12px;
+    padding: 20px;
     margin: 15px;
     width: 240px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
   }
   .product img {
     width: 100%;
     height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
   }
   .product h3 {
     margin: 10px 0 5px;
     font-size: 18px;
+    color: #4CAF50;
   }
   .product p {
-    margin: 5px 0;
+    margin: 5px 0 10px;
     font-weight: bold;
+    font-size: 16px;
   }
   .buy-btn, .cart-btn {
     background: #4CAF50;
     color: white;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 14px;
     margin: 5px 0;
+    width: 100%;
+    transition: background 0.3s, transform 0.2s;
   }
   .buy-btn:hover, .cart-btn:hover {
-    background: #45a049;
+    background: #43A047;
+    transform: translateY(-2px);
   }
   /* Modal */
   .modal {
@@ -71,50 +87,55 @@
     z-index: 1000;
     left: 0; top: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.7);
   }
   .modal-content {
     background: white;
     margin: 10% auto;
-    padding: 20px;
+    padding: 25px;
     width: 90%;
     max-width: 400px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
   .close {
     float: right;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     color: #333;
   }
   .account-number {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
     font-size: 16px;
     margin: 10px 0;
     font-weight: bold;
+    background: #f1f1f1;
   }
   .copy-btn {
     background: #2196F3;
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 25px;
     cursor: pointer;
     margin-bottom: 10px;
+    width: 100%;
+    transition: background 0.3s, transform 0.2s;
   }
   .copy-btn:hover {
     background: #0b7dda;
+    transform: translateY(-2px);
   }
   /* WhatsApp Button */
   .whatsapp-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 25px;
+    right: 25px;
     background: #25D366;
     color: white;
     border-radius: 50%;
@@ -124,31 +145,60 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-size: 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    font-size: 32px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+  }
+  .whatsapp-btn:hover {
+    transform: scale(1.1);
   }
   /* Cart */
   .cart {
     position: fixed;
-    top: 80px;
+    top: 100px;
     right: 20px;
     background: white;
     border: 2px solid #4CAF50;
-    border-radius: 8px;
-    padding: 10px;
-    width: 250px;
-    max-height: 400px;
+    border-radius: 12px;
+    padding: 15px;
+    width: 280px;
+    max-height: 450px;
     overflow-y: auto;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
   }
   .cart h3 {
     margin-top: 0;
     text-align: center;
+    color: #4CAF50;
   }
   .cart-item {
     display: flex;
     justify-content: space-between;
-    margin: 5px 0;
+    margin: 8px 0;
+    font-size: 15px;
+  }
+  #cart-total {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    color: #4CAF50;
+  }
+  .checkout-btn {
+    background: #FF9800;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .checkout-btn:hover {
+    background: #F57C00;
+    transform: translateY(-2px);
   }
 </style>
 </head>
@@ -170,6 +220,7 @@
   <h3>Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
+  <button class="checkout-btn" onclick="checkoutCart()">Checkout</button>
 </div>
 
 <!-- Payment Modal -->
@@ -179,10 +230,10 @@
     <h2 id="modalProductName"></h2>
     <p id="modalProductPrice"></p>
     <p><strong>Pay using one of the accounts below:</strong></p>
-    <p style="margin-top:10px">OPay Account Number</p>
+    <p>OPay Account Number</p>
     <div class="account-number" id="opayAccount">8029641539</div>
     <button class="copy-btn" onclick="copyText('opayAccount')">Copy OPay</button>
-    <p style="margin-top:10px">PalmPay Account Number</p>
+    <p>PalmPay Account Number</p>
     <div class="account-number" id="palmAccount">8029641539</div>
     <button class="copy-btn" onclick="copyText('palmAccount')">Copy PalmPay</button>
     <p style="margin-top:15px">After payment, contact us on WhatsApp to confirm.</p>
@@ -218,6 +269,23 @@
     cartTotalP.innerText = `Total: ₦${total.toLocaleString()}`;
   }
 
+  function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    if(existing) existing.qty += 1;
+    else cart.push({name, price, qty:1});
+    updateCart();
+  }
+
+  function checkoutCart() {
+    let message = 'Hello, I want to order:\n';
+    cart.forEach(item => {
+      message += `${item.name} x${item.qty} - ₦${(item.price * item.qty).toLocaleString()}\n`;
+    });
+    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    message += `Total: ₦${total.toLocaleString()}`;
+    window.open(`https://wa.me/2348029641539?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
   productList.forEach(product => {
     const div = document.createElement('div');
     div.className = 'product';
@@ -230,13 +298,6 @@
     `;
     container.appendChild(div);
   });
-
-  function addToCart(name, price) {
-    const existing = cart.find(item => item.name === name);
-    if(existing) existing.qty += 1;
-    else cart.push({name, price, qty:1});
-    updateCart();
-  }
 
   function showModal(name, price) {
     document.getElementById('modalProductName').innerText = name;
