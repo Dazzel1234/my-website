@@ -51,7 +51,7 @@
     margin: 5px 0;
     font-weight: bold;
   }
-  .buy-btn {
+  .buy-btn, .cart-btn {
     background: #4CAF50;
     color: white;
     padding: 10px;
@@ -59,8 +59,9 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    margin: 5px 0;
   }
-  .buy-btn:hover {
+  .buy-btn:hover, .cart-btn:hover {
     background: #45a049;
   }
   /* Modal */
@@ -109,6 +110,46 @@
   .copy-btn:hover {
     background: #0b7dda;
   }
+  /* WhatsApp Button */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  /* Cart */
+  .cart {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: white;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    padding: 10px;
+    width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  .cart h3 {
+    margin-top: 0;
+    text-align: center;
+  }
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
 </style>
 </head>
 <body>
@@ -123,6 +164,13 @@
 </header>
 
 <div class="products" id="products"></div>
+
+<!-- Cart -->
+<div class="cart" id="cart">
+  <h3>Cart</h3>
+  <div id="cart-items"></div>
+  <p id="cart-total"></p>
+</div>
 
 <!-- Payment Modal -->
 <div id="paymentModal" class="modal">
@@ -141,17 +189,34 @@
   </div>
 </div>
 
+<!-- WhatsApp Button -->
+<a href="https://wa.me/2348029641539" target="_blank" class="whatsapp-btn">&#x2709;</a>
+
 <script>
-  // Product List
   const productList = [
-    { name:'Wireless Headphones', price:'₦10,000', img:'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT9igEuwpgmTMXV_CvlYpA81ob9qyF2FKfgsaGy93Uuhw6dGOgVFhtMeskoXwrkTeTAmR3tQftMwz5KPdDBNiBe_WPQmbF2EzxGhMwUC27QmfwNgiMfnKk5EL0&usqp=CAc' },
-    { name:'Smart Watch', price:'₦15,000', img:'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ32Of-B2cyKhddyriXwyWYZvU8P_qdTGHlx-3cUxEvAEAtcgSqoC0Wie71l1xlow3EBKrbAs2Vl1WJjVMJIGCoEsVeDGL_nR7sV6o3vPbZizBEqTd5MdGvoA&usqp=CAc' },
-    { name:'Bluetooth Speaker', price:'₦12,000', img:'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhiPDXIZNZWpdWag8TAz-7ZZh3HwTH1wmv8U4roS46Y2_-tgW9V9CEjfnMaupXebBWJAcHjIrMI5nZ86YsasKKd3OB4P6DA3sNu1bcBBX4IrfjV4JAw4Bg&usqp=CAc' },
-    { name:'Portable Charger', price:'₦8,000', img:'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...' },
-    { name:'Laptop Stand', price:'₦9,000', img:'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQBK-ktdyHN6mfs-OP40j_noPLVEBTvszUTX8PzwqZIlf3CwJrXRYRj4rEwlPslsmZxbGfUUMsagNwmmPDDa9olMnoyhXKAKCpxc9R0-xH8zfBjzTdFkqLpsBC0_DKskctQXs-_CrjILw&usqp=CAc' }
+    { name:'Wireless Headphones', price:10000, img:'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT9igEuwpgmTMXV_CvlYpA81ob9qyF2FKfgsaGy93Uuhw6dGOgVFhtMeskoXwrkTeTAmR3tQftMwz5KPdDBNiBe_WPQmbF2EzxGhMwUC27QmfwNgiMfnKk5EL0&usqp=CAc' },
+    { name:'Smart Watch', price:15000, img:'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ32Of-B2cyKhddyriXwyWYZvU8P_qdTGHlx-3cUxEvAEAtcgSqoC0Wie71l1xlow3EBKrbAs2Vl1WJjVMJIGCoEsVeDGL_nR7sV6o3vPbZizBEqTd5MdGvoA&usqp=CAc' },
+    { name:'Bluetooth Speaker', price:12000, img:'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhiPDXIZNZWpdWag8TAz-7ZZh3HwTH1wmv8U4roS46Y2_-tgW9V9CEjfnMaupXebBWJAcHjIrMI5nZ86YsasKKd3OB4P6DA3sNu1bcBBX4IrfjV4JAw4Bg&usqp=CAc' },
+    { name:'Laptop Stand', price:9000, img:'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQBK-ktdyHN6mfs-OP40j_noPLVEBTvszUTX8PzwqZIlf3CwJrXRYRj4rEwlPslsmZxbGfUUMsagNwmmPDDa9olMnoyhXKAKCpxc9R0-xH8zfBjzTdFkqLpsBC0_DKskctQXs-_CrjILw&usqp=CAc' }
   ];
 
   const container = document.getElementById('products');
+  const cartItemsDiv = document.getElementById('cart-items');
+  const cartTotalP = document.getElementById('cart-total');
+  let cart = [];
+
+  function updateCart() {
+    cartItemsDiv.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `<span>${item.name} (₦${item.price.toLocaleString()})</span> <span>x${item.qty}</span>`;
+      cartItemsDiv.appendChild(div);
+      total += item.price * item.qty;
+    });
+    cartTotalP.innerText = `Total: ₦${total.toLocaleString()}`;
+  }
 
   productList.forEach(product => {
     const div = document.createElement('div');
@@ -159,11 +224,19 @@
     div.innerHTML = `
       <img src="${product.img}" alt="${product.name}">
       <h3>${product.name}</h3>
-      <p>${product.price}</p>
-      <button class="buy-btn" onclick="showModal('${product.name}','${product.price}')">Buy Now</button>
+      <p>₦${product.price.toLocaleString()}</p>
+      <button class="buy-btn" onclick="showModal('${product.name}','₦${product.price.toLocaleString()}')">Buy Now</button>
+      <button class="cart-btn" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
     `;
     container.appendChild(div);
   });
+
+  function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    if(existing) existing.qty += 1;
+    else cart.push({name, price, qty:1});
+    updateCart();
+  }
 
   function showModal(name, price) {
     document.getElementById('modalProductName').innerText = name;
