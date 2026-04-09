@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Website</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #020617;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(to right, #1e3a8a, #0f172a);
+}
+
+.hero h1 {
+    font-size: 3em;
+}
+
+.hero p {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.btn {
+    padding: 15px 30px;
+    background: #38bdf8;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0ea5e9;
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+    margin: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>MyBrand</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://www.google.com" target="_blank">About</a>
+        <a href="https://wa.me/" target="_blank">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Build Your Dream Business Online</h1>
+    <p>Create a powerful website and start making money</p>
+    <button class="btn" onclick="goToShopify()">Get Started</button>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="card">
+        <h3>Fast</h3>
+        <p>Lightning fast website performance</p>
+    </div>
+
+    <div class="card">
+        <h3>Modern</h3>
+        <p>Clean and professional design</p>
+    </div>
+
+    <div class="card">
+        <h3>Easy</h3>
+        <p>No stress, simple to use</p>
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="cta">
+    <h2>Start Your Online Store Today</h2>
+    <br>
+    <button class="btn" onclick="goToShopify()">Launch Now</button>
+</section>
+
+<footer>
+    <p>© 2026 MyBrand. All rights reserved.</p>
+</footer>
+
+<script>
+function goToShopify() {
+    window.location.href = "https://www.shopify.com";
+}
+</script>
+
+</body>
+</html>
