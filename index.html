@@ -3,149 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Modern Website</title>
+<title>My Modern Business</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Roboto', sans-serif; background: #0f172a; color: white; line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
 
 /* NAVBAR */
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-    background: rgba(0,0,0,0.3);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #38bdf8;
-}
+header { display: flex; justify-content: space-between; padding: 20px 40px; background: rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 10; }
+nav a { margin-left: 20px; font-weight: bold; transition: 0.3s; }
+nav a:hover { color: #38bdf8; }
 
 /* HERO */
-.hero {
-    text-align: center;
-    padding: 120px 20px;
-    background: linear-gradient(to right, #1e3a8a, #0f172a);
-}
-
-.hero h1 {
-    font-size: 3em;
-    animation: fadeInDown 1s ease forwards;
-}
-
-.hero p {
-    margin: 20px 0;
-    font-size: 18px;
-    animation: fadeInUp 1s ease forwards;
-}
-
-.btn {
-    padding: 15px 30px;
-    background: #38bdf8;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #0ea5e9;
-}
+.hero { text-align: center; padding: 120px 20px; background: linear-gradient(to right, #1e3a8a, #0f172a); }
+.hero h1 { font-size: 3em; animation: fadeInDown 1s ease forwards; }
+.hero p { margin: 20px 0; font-size: 18px; animation: fadeInUp 1s ease forwards; }
+.btn { padding: 15px 30px; background: #38bdf8; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; transition: 0.3s; }
+.btn:hover { background: #0ea5e9; }
 
 /* FEATURES */
-.features {
-    display: flex;
-    justify-content: space-around;
-    padding: 60px 20px;
-    flex-wrap: wrap;
-}
+.features { display: flex; justify-content: space-around; padding: 60px 20px; flex-wrap: wrap; }
+.card { background: #1e293b; padding: 30px; border-radius: 10px; width: 250px; margin: 15px; transition: 0.3s; text-align: center; }
+.card:hover { transform: translateY(-10px); }
 
-.card {
-    background: #1e293b;
-    padding: 30px;
-    border-radius: 10px;
-    width: 250px;
-    margin: 15px;
-    transition: 0.3s;
-    text-align: center;
-}
+/* PRODUCTS */
+.products { display: flex; flex-wrap: wrap; justify-content: space-around; padding: 60px 20px; }
+.product-card { background: #1e293b; border-radius: 10px; padding: 20px; width: 220px; margin: 15px; text-align: center; transition: 0.3s; }
+.product-card:hover { transform: translateY(-10px); }
+.product-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
 
-.card:hover {
-    transform: translateY(-10px);
-}
+/* NEWSLETTER */
+.newsletter { text-align: center; padding: 60px 20px; }
+.newsletter input[type="email"] { padding: 12px; width: 250px; border-radius: 6px; border: none; margin-right: 10px; }
+.newsletter button { padding: 12px 20px; border: none; border-radius: 6px; background: #38bdf8; color: white; cursor: pointer; transition: 0.3s; }
+.newsletter button:hover { background: #0ea5e9; }
 
 /* CTA */
-.cta {
-    text-align: center;
-    padding: 80px 20px;
-}
+.cta { text-align: center; padding: 80px 20px; }
 
 /* WhatsApp Button */
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    border-radius: 50%;
-    padding: 15px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-    transition: 0.3s;
-}
-
-.whatsapp:hover {
-    transform: scale(1.1);
-}
+.whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25D366; border-radius: 50%; padding: 15px; cursor: pointer; box-shadow: 0 5px 10px rgba(0,0,0,0.3); transition: 0.3s; }
+.whatsapp:hover { transform: scale(1.1); }
 
 /* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.3);
-}
+footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); }
 
 /* Animations */
-@keyframes fadeInDown {
-    from {opacity: 0; transform: translateY(-50px);}
-    to {opacity: 1; transform: translateY(0);}
-}
+@keyframes fadeInDown { from {opacity: 0; transform: translateY(-50px);} to {opacity: 1; transform: translateY(0);} }
+@keyframes fadeInUp { from {opacity: 0; transform: translateY(50px);} to {opacity: 1; transform: translateY(0);} }
 
-@keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(50px);}
-    to {opacity: 1; transform: translateY(0);}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .features, .products { flex-direction: column; align-items: center; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
     <h2>MyBrand</h2>
     <nav>
         <a href="index.html">Home</a>
-        <a href="https://www.google.com" target="_blank">About</a>
-        <a href="https://wa.me/" target="_blank">Contact</a>
+        <a href="#features">Features</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
@@ -157,21 +82,49 @@ footer {
 </section>
 
 <!-- FEATURES -->
-<section class="features">
+<section class="features" id="features">
     <div class="card">
         <h3>Fast</h3>
         <p>Lightning fast website performance</p>
     </div>
-
     <div class="card">
         <h3>Modern</h3>
         <p>Clean and professional design</p>
     </div>
-
     <div class="card">
         <h3>Easy</h3>
         <p>Simple to use, no coding required</p>
     </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+    <div class="product-card">
+        <img src="https://via.placeholder.com/220x150" alt="Product 1">
+        <h4>Product 1</h4>
+        <p>Brief description of product 1.</p>
+        <button class="btn" onclick="goToShop()">Buy Now</button>
+    </div>
+    <div class="product-card">
+        <img src="https://via.placeholder.com/220x150" alt="Product 2">
+        <h4>Product 2</h4>
+        <p>Brief description of product 2.</p>
+        <button class="btn" onclick="goToShop()">Buy Now</button>
+    </div>
+    <div class="product-card">
+        <img src="https://via.placeholder.com/220x150" alt="Product 3">
+        <h4>Product 3</h4>
+        <p>Brief description of product 3.</p>
+        <button class="btn" onclick="goToShop()">Buy Now</button>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+    <h3>Join Our Newsletter</h3>
+    <p>Get updates on new products and offers!</p>
+    <input type="email" placeholder="Enter your email">
+    <button>Subscribe</button>
 </section>
 
 <!-- CALL TO ACTION -->
@@ -181,17 +134,17 @@ footer {
 </section>
 
 <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp">
+<a href="https://wa.me/2348029641539" target="_blank" class="whatsapp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
 </a>
 
-<footer>
+<footer id="contact">
     <p>© 2026 MyBrand. All rights reserved.</p>
 </footer>
 
 <script>
 function goToShop() {
-    window.location.href = "https://selar.co"; // This is your “Get Started” link
+    window.location.href = "https://selar.co"; // Your store link
 }
 </script>
 
