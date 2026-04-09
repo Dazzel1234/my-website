@@ -7,28 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Roboto',sans-serif;background:#0f172a;color:white;}
+body{font-family:'Roboto',sans-serif;background:#0f172a;color:white;line-height:1.6;}
 header{display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.3);position:sticky;top:0;z-index:10;}
-nav a{margin-left:20px;font-weight:bold;cursor:pointer;}
+nav a{margin-left:20px;font-weight:bold;transition:0.3s;cursor:pointer;}
 nav a:hover{color:#38bdf8;}
 .hero{text-align:center;padding:120px 20px;background:linear-gradient(to right,#1e3a8a,#0f172a);}
 .hero h1{font-size:3em;}
 .hero p{margin:20px 0;font-size:18px;}
-.btn{padding:12px 25px;background:#38bdf8;border:none;border-radius:8px;cursor:pointer;font-size:16px;}
+.btn{padding:12px 25px;background:#38bdf8;border:none;border-radius:8px;cursor:pointer;font-size:16px;transition:0.3s;}
 .btn:hover{background:#0ea5e9;}
+.features{display:flex;justify-content:space-around;padding:60px 20px;flex-wrap:wrap;}
+.card{background:#1e293b;padding:30px;border-radius:10px;width:250px;margin:15px;text-align:center;transition:0.3s;}
+.card:hover{transform:translateY(-10px);}
 .products{display:flex;flex-wrap:wrap;justify-content:space-around;padding:60px 20px;}
-.product-card{background:#1e293b;border-radius:10px;padding:20px;width:220px;margin:15px;text-align:center;cursor:pointer;}
-.product-card img{width:100%;border-radius:10px;margin-bottom:10px;}
+.product-card{background:#1e293b;border-radius:10px;padding:20px;width:220px;margin:15px;text-align:center;transition:0.3s;cursor:pointer;opacity:0; transform: translateY(20px);}
+.product-card img{width:100%;border-radius:10px;margin-bottom:10px;cursor:zoom-in;transition: transform 0.3s;}
+.product-card img:hover{transform:scale(1.1);}
 .product-price{color:#38bdf8;font-weight:bold;margin-bottom:10px;}
-.cart-btn{margin-top:10px;padding:8px 18px;background:#facc15;color:#000;border:none;border-radius:6px;cursor:pointer;margin-right:5px;}
-.buy-btn{background:#22c55e;color:white;}
-.buy-btn:hover{background:#16a34a;}
+.newsletter{text-align:center;padding:60px 20px;}
+.newsletter input[type="email"]{padding:12px;width:250px;border-radius:6px;border:none;margin-right:10px;}
+.newsletter button{padding:12px 20px;border:none;border-radius:6px;background:#38bdf8;color:white;cursor:pointer;transition:0.3s;}
+.newsletter button:hover{background:#0ea5e9;}
+.cta{text-align:center;padding:80px 20px;}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;border-radius:50%;padding:15px;cursor:pointer;box-shadow:0 5px 10px rgba(0,0,0,0.3);transition:0.3s;}
+.whatsapp:hover{transform:scale(1.1);}
+footer{text-align:center;padding:20px;background: rgba(0,0,0,0.3);}
 .modal{display:none;position:fixed;z-index:100;left:0;top:0;width:100%;height:100%;overflow:auto;background: rgba(0,0,0,0.7);}
 .modal-content{background:#1e293b;margin:10% auto;padding:20px;border-radius:10px;width:90%;max-width:400px;text-align:center;}
 .close{color:white;float:right;font-size:28px;font-weight:bold;cursor:pointer;}
-#modalAccount{width:100%;padding:10px;border-radius:5px;text-align:center;font-weight:bold;background:#fff;color:#000;font-size:16px;margin-bottom:10px;}
-.copy-btn{padding:10px 20px;border:none;border-radius:6px;background:#38bdf8;color:white;cursor:pointer;}
+.copy-btn{margin-top:10px;padding:10px 20px;border:none;border-radius:6px;background:#38bdf8;cursor:pointer;color:white;transition:0.3s;margin:5px;}
 .copy-btn:hover{background:#0ea5e9;}
+.cart-btn{margin-top:10px;padding:8px 18px;background:#facc15;color:#000;border:none;border-radius:6px;cursor:pointer;transition:0.3s;margin-right:5px;}
+.cart-btn:hover{background:#eab308;}
+.buy-btn{background:#22c55e;color:white;}
+.buy-btn:hover{background:#16a34a;}
+@media(max-width:768px){.features,.products{flex-direction:column;align-items:center;}}
+#modalImage{width:100%;max-width:300px;border-radius:10px;cursor:zoom-in;transition:transform 0.3s;}
+#modalImage:hover{transform:scale(1.2);}
+#modalAccount{width:100%;padding:10px;border-radius:5px;text-align:center;font-weight:bold;background:#fff;color:#000;font-size:16px;margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -36,8 +52,11 @@ nav a:hover{color:#38bdf8;}
 <header>
 <h2>Dazzel Store</h2>
 <nav>
-<a href="#">Home</a>
+<a href="index.html">Home</a>
+<a href="#features">Features</a>
 <a href="#products">Products</a>
+<a href="#contact">Contact</a>
+<a onclick="openCart()">Cart (<span id="cartCount">0</span>)</a>
 </nav>
 </header>
 
@@ -47,8 +66,34 @@ nav a:hover{color:#38bdf8;}
 <button class="btn" onclick="goToShop()">Get Started</button>
 </section>
 
+<section class="features" id="features">
+<div class="card"><h3>Fast</h3><p>Lightning fast website performance</p></div>
+<div class="card"><h3>Modern</h3><p>Clean professional design</p></div>
+<div class="card"><h3>Easy</h3><p>Simple to use, no coding needed</p></div>
+</section>
+
 <section class="products" id="products">
 </section>
+
+<section class="newsletter">
+<h3>Join Our Newsletter</h3>
+<p>Get updates on new products and offers!</p>
+<input type="email" placeholder="Enter your email">
+<button>Subscribe</button>
+</section>
+
+<section class="cta">
+<h2>Start Selling Today!</h2>
+<button class="btn" onclick="goToShop()">Launch Now</button>
+</section>
+
+<a href="https://wa.me/2348029641539" target="_blank" class="whatsapp">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+</a>
+
+<footer id="contact">
+<p>© 2026 Dazzel Store. All rights reserved.</p>
+</footer>
 
 <!-- Product Modal -->
 <div id="productModal" class="modal">
@@ -57,15 +102,28 @@ nav a:hover{color:#38bdf8;}
 <img id="modalImage" src="" alt="Product">
 <h3 id="modalName"></h3>
 <p id="modalPrice"></p>
-<p>Transfer to this account number:</p>
-<input type="text" id="modalAccount" value="8029641539" readonly>
-<button class="copy-btn" onclick="copyAccount()">Copy Account Number</button>
+<p>Transfer using:</p>
+<input type="text" id="modalAccountOPay" value="Divine Okechukwu - 8029641539" readonly>
+<button class="copy-btn" onclick="copyAccount('OPay')">Copy OPay</button>
+<input type="text" id="modalAccountPalmPay" value="Ifunaya Okechukwu - 8029641539" readonly>
+<button class="copy-btn" onclick="copyAccount('PalmPay')">Copy PalmPay</button>
 <p>After payment, contact us on WhatsApp to confirm</p>
 </div>
 </div>
 
+<!-- Cart Modal -->
+<div id="cartModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeCart()">&times;</span>
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<p>Total: ₦<span id="cartTotal">0</span></p>
+<button class="btn" onclick="checkout()">Checkout</button>
+</div>
+</div>
+
 <script>
-// Products
+// Products with reliable images
 const products = [
 { name:'Wireless Headphones', price:12500, img:'https://cdn.pixabay.com/photo/2017/06/05/19/21/headphones-2370791_640.jpg' },
 { name:'Smart Watch', price:18000, img:'https://cdn.pixabay.com/photo/2017/08/10/07/51/smartwatch-2616874_640.jpg' },
@@ -74,15 +132,19 @@ const products = [
 { name:'Laptop Stand', price:8000, img:'https://cdn.pixabay.com/photo/2016/11/29/04/45/laptop-1869261_640.jpg' }
 ];
 
+let cart = [];
 const productContainer = document.getElementById('products');
-products.forEach(p=>{
+products.forEach((p,index)=>{
   const div=document.createElement('div');
   div.className='product-card';
+  div.style.transitionDelay = `${index*0.1}s`;
   div.innerHTML=`<img src="${p.img}" alt="${p.name}" onclick="openModal('${p.name}',${p.price},'${p.img}')">
   <h4>${p.name}</h4>
   <p class="product-price">₦${p.price.toLocaleString()}</p>
+  <button class="cart-btn" onclick="event.stopPropagation();addToCart('${p.name}',${p.price})">Add to Cart</button>
   <button class="cart-btn buy-btn" onclick="event.stopPropagation();buyNow('${p.name}',${p.price},'${p.img}')">Buy Now</button>`;
   productContainer.appendChild(div);
+  setTimeout(()=>{div.style.opacity='1'; div.style.transform='translateY(0)';},50);
 });
 
 // Modal functions
@@ -93,19 +155,62 @@ function openModal(name,price,img){
   document.getElementById('productModal').style.display='block';
 }
 function closeModal(){document.getElementById('productModal').style.display='none';}
-function copyAccount(){
-  const copyText=document.getElementById('modalAccount');
+function copyAccount(type){
+  let inputId = type==='OPay'?'modalAccountOPay':'modalAccountPalmPay';
+  var copyText=document.getElementById(inputId);
   copyText.select();
   copyText.setSelectionRange(0,99999);
   document.execCommand('copy');
-  alert('Account number copied!');
+  alert(type+' account info copied!');
+}
+
+// Cart functions
+function addToCart(name,price){
+  cart.push({name,price});
+  document.getElementById('cartCount').innerText=cart.length;
+  alert(name+' added to cart!');
 }
 function buyNow(name,price,img){
   openModal(name, price, img);
 }
+function openCart(){
+  renderCart();
+  document.getElementById('cartModal').style.display='block';
+}
+function closeCart(){document.getElementById('cartModal').style.display='none';}
+function renderCart(){
+  const cartItems=document.getElementById('cartItems');
+  cartItems.innerHTML='';
+  let total=0;
+  cart.forEach(item=>{
+    total+=item.price;
+    const div=document.createElement('div');
+    div.innerText=`${item.name} - ₦${item.price.toLocaleString()}`;
+    cartItems.appendChild(div);
+  });
+  document.getElementById('cartTotal').innerText=total.toLocaleString();
+}
+function checkout(){
+  if(cart.length===0){alert('Cart is empty!'); return;}
+  alert(`Checkout Instructions:
+
+Total: ₦${cart.reduce((a,b)=>a+b.price,0).toLocaleString()}
+
+Payment Options:
+1. OPay - Divine Okechukwu 8029641539
+2. PalmPay - Ifunaya Okechukwu 8029641539
+
+After payment, contact us on WhatsApp to confirm.`);
+  cart=[];
+  document.getElementById('cartCount').innerText=0;
+  closeCart();
+}
+
+// WhatsApp and Get Started
 function goToShop(){window.location.href="https://selar.co";}
 window.onclick=function(event){
   if(event.target==document.getElementById('productModal')){closeModal();}
+  if(event.target==document.getElementById('cartModal')){closeCart();}
 }
 </script>
 
