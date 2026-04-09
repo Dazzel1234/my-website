@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Modern Business</title>
+<title>My Online Store</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Roboto', sans-serif; background: #0f172a; color: white; line-height: 1.6; }
-a { text-decoration: none; color: inherit; }
 
 /* NAVBAR */
 header { display: flex; justify-content: space-between; padding: 20px 40px; background: rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 10; }
@@ -35,6 +33,7 @@ nav a:hover { color: #38bdf8; }
 .product-card { background: #1e293b; border-radius: 10px; padding: 20px; width: 220px; margin: 15px; text-align: center; transition: 0.3s; }
 .product-card:hover { transform: translateY(-10px); }
 .product-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+.product-price { color: #38bdf8; font-weight: bold; margin-bottom: 10px; }
 
 /* NEWSLETTER */
 .newsletter { text-align: center; padding: 60px 20px; }
@@ -65,7 +64,7 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); }
 <body>
 
 <header>
-    <h2>MyBrand</h2>
+    <h2>MyStore</h2>
     <nav>
         <a href="index.html">Home</a>
         <a href="#features">Features</a>
@@ -76,25 +75,16 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); }
 
 <!-- HERO -->
 <section class="hero">
-    <h1>Build Your Dream Business Online</h1>
-    <p>Create a powerful website and start making money today</p>
+    <h1>Start Your Online Business Today</h1>
+    <p>Sell products online and reach customers across Nigeria</p>
     <button class="btn" onclick="goToShop()">Get Started</button>
 </section>
 
 <!-- FEATURES -->
 <section class="features" id="features">
-    <div class="card">
-        <h3>Fast</h3>
-        <p>Lightning fast website performance</p>
-    </div>
-    <div class="card">
-        <h3>Modern</h3>
-        <p>Clean and professional design</p>
-    </div>
-    <div class="card">
-        <h3>Easy</h3>
-        <p>Simple to use, no coding required</p>
-    </div>
+    <div class="card"><h3>Fast</h3><p>Lightning fast website performance</p></div>
+    <div class="card"><h3>Modern</h3><p>Clean professional design</p></div>
+    <div class="card"><h3>Easy</h3><p>Simple to use, no coding needed</p></div>
 </section>
 
 <!-- PRODUCTS -->
@@ -102,19 +92,19 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); }
     <div class="product-card">
         <img src="https://via.placeholder.com/220x150" alt="Product 1">
         <h4>Product 1</h4>
-        <p>Brief description of product 1.</p>
+        <p class="product-price">₦2,000</p>
         <button class="btn" onclick="goToShop()">Buy Now</button>
     </div>
     <div class="product-card">
         <img src="https://via.placeholder.com/220x150" alt="Product 2">
         <h4>Product 2</h4>
-        <p>Brief description of product 2.</p>
+        <p class="product-price">₦3,500</p>
         <button class="btn" onclick="goToShop()">Buy Now</button>
     </div>
     <div class="product-card">
         <img src="https://via.placeholder.com/220x150" alt="Product 3">
         <h4>Product 3</h4>
-        <p>Brief description of product 3.</p>
+        <p class="product-price">₦1,800</p>
         <button class="btn" onclick="goToShop()">Buy Now</button>
     </div>
 </section>
@@ -129,7 +119,7 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); }
 
 <!-- CALL TO ACTION -->
 <section class="cta">
-    <h2>Start Your Online Store Today</h2>
+    <h2>Start Selling Today!</h2>
     <button class="btn" onclick="goToShop()">Launch Now</button>
 </section>
 
@@ -139,12 +129,12 @@ footer { text-align: center; padding: 20px; background: rgba(0,0,0,0.3); }
 </a>
 
 <footer id="contact">
-    <p>© 2026 MyBrand. All rights reserved.</p>
+    <p>© 2026 MyStore. All rights reserved.</p>
 </footer>
 
 <script>
 function goToShop() {
-    window.location.href = "https://selar.co"; // Your store link
+    window.location.href = "https://selar.co"; // Replace with your product/store link
 }
 </script>
 
